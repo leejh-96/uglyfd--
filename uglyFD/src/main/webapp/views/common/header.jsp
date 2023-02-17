@@ -22,10 +22,12 @@
             <div class="divwrap-sub">
 
                 <!-- 비로그인 시 처리 -->
-<!--                  <div class="divwrap-sub5"> -->
-<%--                     <a href="${path }"><button class="btn-primary btn-sm">로그인</button></a> --%>
-<%--                     <a href="${path }"><button class="btn-primary btn-sm">회원가입</button></a> --%>
-<!--                 </div>  -->
+                <form action="${path }/signup">
+                 <div class="divwrap-sub5">
+                    <a href="${path }"><button class="btn-primary btn-sm">로그인</button></a>
+                    <a href="${path }/member/SignUp.jsp"><button type="submit" class="btn-primary btn-sm">회원가입</button></a>
+                </div> 
+                </form>
 
                 <!-- 로그인 시-회원 처리-->
 <!--                 <div class="divwrap-sub5"> -->
@@ -37,13 +39,13 @@
 <!--                     </form> -->
 <!--                 </div> -->
 
-                <!-- 로그인 시-관리자 처리 -->
-                <div class="divwrap-sub5">
-                    	<button class="sub5-btn"><a href="${path }"><i class="fa-solid fa-user-secret fa-lg">-MANAGER-</i></a></button>
-                    <form action="${path }" method="GET">
-                        <button class="btn-primary btn-sm">로그아웃</button>
-                    </form>
-                </div> 
+<!--                 로그인 시-관리자 처리 -->
+<!--                 <div class="divwrap-sub5"> -->
+<%--                     	<button class="sub5-btn"><a href="${path }"><i class="fa-solid fa-user-secret fa-lg">-MANAGER-</i></a></button> --%>
+<%--                     <form action="${path }" method="GET"> --%>
+<!--                         <button class="btn-primary btn-sm">로그아웃</button> -->
+<!--                     </form> -->
+<!--                 </div>  -->
 
             </div>
         </div>
