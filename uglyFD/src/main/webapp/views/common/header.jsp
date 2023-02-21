@@ -66,7 +66,7 @@
                 <li><a href="${path }">공지사항</a></li>
                 <li><a href="${path }/board/inquire">1 : 1 문의</a></li>
                 <li>
-                    <a href="${path }">고객센터</a>
+                    <a href="${path }/board/cuscenter">고객센터</a>
                 </li>
             </ul>
         </nav>
