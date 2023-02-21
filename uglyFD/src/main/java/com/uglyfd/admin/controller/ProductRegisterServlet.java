@@ -42,7 +42,7 @@ public class ProductRegisterServlet extends HttpServlet {
 		//MultipartRequest 객체 생성
 		MultipartRequest mr = new MultipartRequest(request, path, maxSize, encoding, new FileRename());
 		
-		//Product 객체를 생성해서 넘어온 파라미터 값들을 저장
+		//Product 객체를 생성해서 넘어온 파라미터 값 저장
 		Product product = new Product();
 		//ProductFile 객체를 생성해서 넘어온 파라미터 값들을 저장
 		ProductFile productFile = new ProductFile();
