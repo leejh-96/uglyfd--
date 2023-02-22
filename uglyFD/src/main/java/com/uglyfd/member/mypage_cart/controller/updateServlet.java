@@ -1,4 +1,4 @@
-package com.uglyfd.member.controller;
+package com.uglyfd.member.mypage_cart.controller;
 
 import java.io.IOException;
 //import java.sql.PreparedStatement;
@@ -14,12 +14,12 @@ import javax.servlet.http.HttpSession;
 import com.uglyfd.member.model.service.MemberService;
 import com.uglyfd.member.model.vo.Member;
 
-@WebServlet(name = "update", urlPatterns = { "/mypage/update" })
-public class updateServlert extends HttpServlet {
+@WebServlet(name = "myPageServlet", urlPatterns = { "/mypage/update" })
+public class updateServlet extends HttpServlet {
 	private static final long serialVersionUID = 1L;
        
 
-    public updateServlert() {
+    public updateServlet() {
         
     }
 
@@ -27,34 +27,35 @@ public class updateServlert extends HttpServlet {
 
 	
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		Member member = null;
 		int result = 0;
+		Member member = null;
 		
 		HttpSession session = request.getSession(false);
-		Member loginmember = (session == null) ? null : (Member) session.getAttribute("loginmember");
+		Member loginMember = (session == null) ? null : (Member) session.getAttribute("loginMember");
 		
-		if (loginmember != null) {
+		if (loginMember != null) {
 			member = new Member();
-			
-			member.setNo(member.getNo());
-			member.setPassword(request.getParameter("M_PWD"));
-			member.setMail(request.getParameter("M_MAIL"));
-			member.setName(request.getParameter("M_NAME"));
-			member.setBirth(request.getParameter("M_BIRTH"));
-			member.setPhone(request.getParameter("M_PHONE"));
-			member.setAddr(request.getParameter("M_ADDR"));
+						
+			member.setNo(loginMember.getNo());
+			member.setPassword(request.getParameter("userPwd1"));
+			member.setMail(request.getParameter("email"));
+			member.setName(request.getParameter("userName"));
+			member.setBirth(request.getParameter("birth"));
+//			member.setGender(request.getParameter("gender"));
+			member.setPhone(request.getParameter("phone"));
+			member.setAddr(request.getParameter("addr"));
 			
 			result = new MemberService().save(member);
 			
 			if (result > 0) {
-				session.setAttribute("loginmember", new MemberService().findMemberById(member.getId()));
+				session.setAttribute("loginMember", new MemberService().findMemberById(member.getId()));
 				
 				request.setAttribute("msg", "회원 정보 수정 완료");
-				request.setAttribute("location", "/views/mypage/mypage.jsp");
+				request.setAttribute("location", "/mypage/myrevise");
 			}else {
 				
 				request.setAttribute("msg", "회원 정보 수정 실패");
-				request.setAttribute("location", "views/mypage/myrevise.jsp");
+				request.setAttribute("location", "/mypage/myrevise");
 			}
 			
 	} else {

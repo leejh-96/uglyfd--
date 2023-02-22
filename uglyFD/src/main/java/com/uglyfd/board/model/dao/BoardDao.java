@@ -20,7 +20,7 @@ public class BoardDao {
         int count = 0;
         PreparedStatement pstmt = null;
         ResultSet rs = null;
-        String query = "SELECT COUNT(*) FROM BOARD WHERE BC_NO='2' AND STATUS='Y'";
+        String query = "SELECT COUNT(*) FROM BOARD WHERE BC_NO='2'";
 
         try {
             pstmt = connection.prepareStatement(query);

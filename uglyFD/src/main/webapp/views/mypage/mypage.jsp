@@ -28,7 +28,7 @@
 <%-- <c:if test="${ empty loginmember }"> --%>
 <%-- <div>${ loginmember.name } 님 환영합니다!</div> --%>
 <%-- </c:if> --%>
-
+				
 
 <c:if test="${ not empty loginmember }">
 <div>${ loginmember.name } 님 환영합니다!</div>
