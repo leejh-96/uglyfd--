@@ -11,7 +11,8 @@ import com.oreilly.servlet.MultipartRequest;
 import com.uglyfd.admin.model.service.ProductService;
 import com.uglyfd.admin.model.vo.Product;
 import com.uglyfd.admin.model.vo.ProductFile;
-import com.uglyfd.admin.util.FileRename;
+import com.uglyfd.admin.utill.FileRename;
+
 
 @WebServlet(name = "productUpdate", urlPatterns = { "/product/update" })
 public class ProductUpdateServlet extends HttpServlet {

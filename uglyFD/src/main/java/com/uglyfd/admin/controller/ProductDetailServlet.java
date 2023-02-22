@@ -71,7 +71,6 @@ public class ProductDetailServlet extends HttpServlet {
 //    			request.getRequestDispatcher("/views/admin/product_detail_page.jsp").forward(request, response);
 //    		}
     		
-    		
 	}
 
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
