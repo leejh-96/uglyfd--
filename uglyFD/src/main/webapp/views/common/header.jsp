@@ -35,22 +35,24 @@
                 </c:if>
                 
 <!--                 로그인 시-회원 처리 -->
-				<c:if test="${ not empty loginMember }">
+				<c:if test="${loginMember.grade == 2 }">
                 <div class="divwrap-sub5">
                     <button class="sub5-btn"><a href="${path }/mypage/mypage"><i class="fa-solid fa-user fa-lg"></i></a></button>
-                    <button class="sub5-btn"><a href="${path }/mypage/mycart"><i class="fa-sharp fa-solid fa-cart-shopping fa-lg"></i></a></button>
+                    <button class="sub5-btn"><a href="${path }/mypage/mycart?memberNo=${loginMember.no}"><i class="fa-sharp fa-solid fa-cart-shopping fa-lg"></i></a></button>
                     <span class="badge-absolute badge">0</span>
                     <button onclick="location.replace('${ path }/logout')" class="btn-primary btn-sm" >로그아웃</button>
                 </div>
 				</c:if>
 
 <!--                 로그인 시-관리자 처리 -->
-<!--                 <div class="divwrap-sub5"> -->
-<%--                     	<button class="sub5-btn"><a href="${path }"><i class="fa-solid fa-user-secret fa-lg">-MANAGER-</i></a></button> --%>
-<%--                     <form action="${path }" method="GET"> --%>
-<!--                         <button class="btn-primary btn-sm">로그아웃</button> -->
-<!--                     </form> -->
-<!--                 </div>  -->
+               <c:if test="${loginMember.grade == 1 }">
+                   <div class="divwrap-sub5">
+                          <button class="sub5-btn"><a href="${path }/views/admin/admin_page.jsp"><i class="fa-solid fa-user-secret fa-lg">-MANAGER-</i></a></button>
+                       <form action="${path }" method="GET">
+                           <button onclick="location.replace('${ path }/logout')" class="btn-primary btn-sm">로그아웃</button>
+                       </form>
+                   </div> 
+                </c:if>
 
             </div>
         </div>
