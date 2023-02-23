@@ -9,7 +9,7 @@ footer *{
     display: flex;
     justify-content: center;
 }
-#footer-div1>div>img{
+ #footer-div1>div>img{
     width: 100%;
     height: 100%;
 }
