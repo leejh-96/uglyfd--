@@ -42,7 +42,6 @@ public class ProductStockUpdateServlet extends HttpServlet {
 	}
 
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-
 		int result = 0;
 		
 		InOut io = new InOut();
@@ -50,12 +49,7 @@ public class ProductStockUpdateServlet extends HttpServlet {
 		io.setProductCategoryNum(Integer.parseInt(request.getParameter("productCategoryNum")));
 		io.setProductStock(Integer.parseInt(request.getParameter("stock")));
 		io.setStatus(request.getParameter("inout"));
-		
-		System.out.println(io.getProductNum());
-		System.out.println(io.getProductCategoryNum());
-		System.out.println(io.getProductStock());
-		System.out.println(io.getStatus());
-		
+
 		result = new ProductService().productStockUpdate(io);
 		
 		if (result == -10) {
@@ -73,6 +67,7 @@ public class ProductStockUpdateServlet extends HttpServlet {
 				request.setAttribute("location", "/views/admin/admin_stock.jsp");
 			}
 		}
+		
 		request.getRequestDispatcher("/views/common/msg.jsp").forward(request, response);
 		
 	}

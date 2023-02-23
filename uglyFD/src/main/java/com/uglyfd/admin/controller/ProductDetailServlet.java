@@ -8,6 +8,7 @@ import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import javax.servlet.http.HttpSession;
 
 import com.uglyfd.admin.model.service.ProductService;
 import com.uglyfd.admin.model.vo.InOut;
@@ -15,6 +16,7 @@ import com.uglyfd.admin.model.vo.PageInfo;
 import com.uglyfd.admin.model.vo.Product;
 import com.uglyfd.admin.model.vo.ProductFile;
 import com.uglyfd.admin.model.vo.Review;
+import com.uglyfd.member.model.vo.Member;
 
 @WebServlet(name = "productdetail", urlPatterns = { "/product/detail" })
 public class ProductDetailServlet extends HttpServlet {
@@ -29,6 +31,9 @@ public class ProductDetailServlet extends HttpServlet {
 			ProductFile productFile = null;
 			Product product = null;
 			
+			HttpSession session = ((HttpServletRequest)request).getSession(false);
+			Member loginMember = (Member)(session.getAttribute("loginMember"));
+			
     		int productNum = Integer.parseInt(request.getParameter("productNum"));
     		
     		System.out.println(productNum);
@@ -36,6 +41,7 @@ public class ProductDetailServlet extends HttpServlet {
     		productFile = new ProductService().findByProductFile(productNum);
     		product = new ProductService().findByProduct(productNum);
     		
+    		request.setAttribute("loginMember", loginMember);
     		request.setAttribute("productFile", productFile);
     		request.setAttribute("product", product);
     		
