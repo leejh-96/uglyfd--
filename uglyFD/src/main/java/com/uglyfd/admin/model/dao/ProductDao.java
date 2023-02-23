@@ -3,6 +3,7 @@ package com.uglyfd.admin.model.dao;
 import java.sql.*;
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
+import java.util.Date;
 import java.util.List;
 
 import com.uglyfd.admin.model.vo.*;
@@ -551,7 +552,7 @@ public class ProductDao {
 		return list;
 	}
 
-	public int productReview(Connection connection, int productNum, int productCategoryNum, String review) {
+	public int productReview(String loginMemberId, Connection connection, int productNum, int productCategoryNum, String review) {
 		//, String loginMemberId 매개변수에 넣기
 		int result = 0;
 		
@@ -574,7 +575,7 @@ public class ProductDao {
 									+ "    DEFAULT, "
 									+ "    DEFAULT, "
 									+ "    ?, "
-									+ "    'sbxl12', "
+									+ "    ?, "
 									+ "    ?, "
 									+ "    ?, "
 									+ "    DEFAULT "
@@ -584,9 +585,9 @@ public class ProductDao {
 			pstmt = connection.prepareStatement(query);
 
 			pstmt.setString(1, review);
-//			pstmt.setString(2, loginMemberId);
-			pstmt.setInt(2, productNum);
-			pstmt.setInt(3, productCategoryNum);
+			pstmt.setString(2, loginMemberId);
+			pstmt.setInt(3, productNum);
+			pstmt.setInt(4, productCategoryNum);
 		
 			result = pstmt.executeUpdate();
 		} catch (SQLException e) {
@@ -728,6 +729,115 @@ public class ProductDao {
 			close(pstmt);
 		}
 		return list;
+	}
+
+	public Admin_member findByAdmin_Member(Connection connection, String name, String id, String phone) {
+		
+		Admin_member amember = new Admin_member();
+		PreparedStatement pstmt = null;
+		ResultSet rs = null;
+		String query = "SELECT "
+						+ "    m_no, "
+						+ "    m_id, "
+						+ "    m_pwd, "
+						+ "    m_name, "
+						+ "    m_birth, "
+						+ "    m_gender, "
+						+ "    m_mail, "
+						+ "    m_phone, "
+						+ "    m_addr, "
+						+ "    m_create, "
+						+ "    m_update "
+						+ "FROM "
+						+ "    member "
+						+ "WHERE M_NAME = ? AND M_ID = ? AND M_PHONE = ? AND M_GRADE = 2";
+		
+		try {
+			pstmt = connection.prepareStatement(query);
+
+			pstmt.setString(1, name);
+			pstmt.setString(2, id);
+			pstmt.setString(3, phone);
+			
+			rs = pstmt.executeQuery();
+			
+			if (rs.next()) {
+				
+				amember.setNo(rs.getInt("M_NO"));
+				amember.setId(rs.getString("M_ID"));
+				amember.setPassword(rs.getString("M_PWD"));
+				amember.setName(rs.getString("M_NAME"));
+				amember.setBirth(rs.getDate("M_BIRTH"));
+				amember.setGender(rs.getString("M_GENDER"));
+				amember.setMail(rs.getString("M_MAIL"));
+				amember.setPhone(rs.getString("M_PHONE"));
+				amember.setAddr(rs.getString("M_ADDR"));
+				amember.setCreateDate(rs.getDate("M_CREATE"));
+				amember.setUpdateDate(rs.getDate("M_UPDATE"));
+				
+			}
+		} catch (SQLException e) {
+			e.printStackTrace();
+		} finally {
+			close(rs);
+			close(pstmt);
+		}
+		return amember;
+	}
+
+	public int adminMemberUpdate(Connection connection, int memberNo, String id, String password, String addr, String mail, String phone) {
+		
+		int result = 0;
+		PreparedStatement pstmt = null;
+		String query = "UPDATE member "
+							+ "SET "
+							+ "    M_ID = ?, "
+							+ "    M_PWD = ?, "
+							+ "    M_ADDR = ?, "
+							+ "    M_MAIL = ?, "
+							+ "    M_PHONE = ? "
+							+ "WHERE m_no = ? AND m_grade = 2 ";
+		
+		try {
+			pstmt = connection.prepareStatement(query);
+
+			pstmt.setString(1, id);
+			pstmt.setString(2, password);
+			pstmt.setString(3, addr);
+			pstmt.setString(4, mail);
+			pstmt.setString(5, phone);
+			pstmt.setInt(6, memberNo);
+		
+			result = pstmt.executeUpdate();
+		
+		} catch (SQLException e) {
+			e.printStackTrace();
+		} finally {
+			close(pstmt);
+		}
+		return result;
+	}
+
+	public int memberDelete(Connection connection, int memberNo) {
+		
+		int result = 0;
+		PreparedStatement pstmt = null;
+		String query = "DELETE FROM member "
+						+ "WHERE m_no = ? and m_grade = 2 ";
+		
+		try {
+			pstmt = connection.prepareStatement(query);
+
+			pstmt.setInt(1, memberNo);
+			
+			result = pstmt.executeUpdate();
+		
+		} catch (SQLException e) {
+			e.printStackTrace();
+		} finally {
+			close(pstmt);
+		}
+		return result;
 	}
 
 	
