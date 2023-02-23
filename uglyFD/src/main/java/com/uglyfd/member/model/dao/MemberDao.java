@@ -55,7 +55,7 @@ public class MemberDao {
 	public int insertMember(Connection connection, Member member) {
 		int result = 0;
 		PreparedStatement pstmt = null;
-		String query = "INSERT INTO MEMBER VALUES(SEQ_UNO.NEXTVAL,?,?,?,?,?,?,?,?,DEFAULT,DEFAULT,DEFAULT)";
+		String query = "INSERT INTO MEMBER VALUES(SEQ_MEMBER_M_NO.NEXTVAL,?,?,?,?,?,?,?,?,DEFAULT,DEFAULT,DEFAULT)";
 		
 		try {
 			pstmt = connection.prepareStatement(query);
