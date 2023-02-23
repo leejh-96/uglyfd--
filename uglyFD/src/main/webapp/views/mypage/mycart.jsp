@@ -22,14 +22,6 @@
 <jsp:include page="/views/common/header.jsp" />
 
  <section class="cart">
-            <!-- <div class="cart__information">
-                <ul>
-                    <li>장바구니 상품은 최대 30일간 저장됩니다.</li>
-                    <li>가격, 옵션 등 정보가 변경된 경우 주문이 불가할 수 있습니다.</li>
-                    <li>오늘출발 상품은 판매자 설정 시점에 따라 오늘출발 여부가 변경될 수 있으니 주문 시 꼭 다시 확인해 주시기 바랍니다.</li>
-                </ul>
-            </div> -->
-
             <br>
             <div class="c_cr">
                 <div class="c_cr1">
@@ -40,7 +32,7 @@
 
             
             <table class="cart__list">
-                <form>
+                <form action="${ path }/product/mycart"  method="POST">
                     <thead>
                         <tr>
                             <td class="td1"><input type="checkbox" id="chkAll" name="chk"></td>
@@ -52,16 +44,15 @@
                     </thead>
                     <tbody>
                         <tr class="cart__list__detail">
-                            <td class="td1"><input type="checkbox" onClick="itemSum(this.form)" name="chk" value="30000"  ></td>
+                            <td class="td1"><input value="${ product.productNum }" type="checkbox" onClick="itemSum(this.form)" name="chk" ></td>
                             <td class="td1"><img class="img2" src="${path }/resources/images/food1.jpg"></td>
-                            <td class="td1"><a href="#"></a><span class="cart__list__smartstore" name="fruit">당근</span>
-                                <p>너무 신선해서 당근이 움직일 것 같아요!</p>
+                            <td class="td1"><a href="#"></a><span value="${ product.productName }" class="cart__list__smartstore" name="fruit" ></span>
                             </td>
                             <td  class="td1">
                                 <label for="amount">수량 :</label>
-                                <input type="number" name="amount" id="amount" value="1" min="0" >
+                                <input type="number" name="amount" id="amount" value="${ product.productAmount }" >
                             </td>
-                            <td class="td1"><span class="price">30,000원</span><br>
+                            <td class="td1"><span class="price" value="${ product.productPrice }"></span><br>
                             </td>
                             <td class="td1">2500원</td>
                         </tr>
