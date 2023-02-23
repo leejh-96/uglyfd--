@@ -24,12 +24,11 @@
             <div><a href="${path }/productinout" class="admin-sidenav">입/출고조회</a></div>
         </div>
        <div id="wrap-div2">
-       
-       		<div class="card card-margin">
-                 <img id="stock-img" src="${path}/resources/upload/product/${productfile.renamedFileName}"  width="300px" height="150px" >
-            </div>
+       	<div class="text-center">
+			  <img src="${path}/resources/upload/product/${productfile.renamedFileName}" width="700px" height="200px" class="rounded" alt="...">
+			  <div class="recycle-div2"></div>
+		</div>
 		<h1>재고등록</h1>
-<%--       <img id="stock-img" src="${path}/resources/upload/product/${productfile.renamedFileName}"> --%>
 			<form action="${path }/productstockupdate" method="POST" >
                 <table class="table">
                     <tbody>
@@ -77,22 +76,22 @@
                         <tr>
                             <th scope="row" colspan="2">입/출고 등록</th>
                             <td>
-                            	<label for="in"><input type="radio" id="in" name="inout" value="입고"checked>입고</label>
-                                <label for="out"><input type="radio" id="out" name="inout" value="출고">출고</label>
+                            	<input type="radio" class="inout" id="in" name="inout" value="입고"checked>입고
+                                <input type="radio" class="inout" id="out" name="inout" value="출고">출고
 	                        </td>
                         </tr>
                         <tr>
                             <th scope="row" colspan="2">등록재고수량</th>
                             <td>
-                            	<input type="text" size="5px" name="stock">box
+                            	<input id="productAcount" type="text" size="5px" name="stock">box
 	                        </td>
                         </tr>
                     </tbody>
                 </table>
                 <div class="find-btn">
-                	<input type="hidden" name="productCategoryNum" value="${product.productCategoryNum}">
-                	<input type="hidden" name="productNum" value="${product.productNum}">
-                    <button type="submit" class="btn find-btn1">등록하기</button>
+                	<input type="hidden" id="productCategoryNum" name="productCategoryNum" value="${product.productCategoryNum}">
+                	<input type="hidden" id="productNum" name="productNum" value="${product.productNum}">
+                    <button id="productStock" type="submit" class="btn find-btn1">등록하기</button>
                     <button type="reset" class="btn find-btn1">취소</button>
                 </div>
             </form>
@@ -104,7 +103,54 @@
 	
 	<script>
 	
+	$('#productStock').click(function() {
+	    if (!$('#productAcount').val()) {
+	        alert('수량을 입력해주세요.');
+	        return false;
+	    }
+	})
 	
+
+		$('#productStock').on('click',function(){
+			
+			let productNum = $('#productNum').val();
+			let productCategoryNum = $('#productCategoryNum').val();
+			let productAcount = $('#productAcount').val();
+			let inout = $('.inout').val();
+			
+			$.ajax({
+				
+				type: 'POST',
+				url: '${pageContext.request.contextPath}/productstockupdate',
+				datatype: 'text',
+				data:{
+					productNum,
+					productCategoryNum,
+					productAcount,
+					inout
+					
+				},
+				success: (data==='ok')=>{
+					alert('ajax통신성공 + 재고등록 성공')
+					
+				},
+				error: (error)=>{
+					
+					alert('ajax통신실패')
+
+				}
+				
+			});
+			
+		});
+		
+		
+
+		
+		
+		
+		
+// 	});
 	
 	
 	

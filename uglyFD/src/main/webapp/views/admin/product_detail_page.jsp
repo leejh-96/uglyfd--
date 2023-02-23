@@ -59,7 +59,7 @@
 						<h2>현재 주문가능한 수량이 없습니다. 다음에 다시 이용해주세요.</h2>
 					</c:if>
 					<c:if test="${product.productAmount != 0 }">
-						<label for="amount">수량 : 
+						<label for="amount">수량 : 5kg
 	            			<input type="number" name="amount" id="amount" value="0" min="0" max="${product.productAmount }" step="1">Box
 						</label>
 					</c:if>
@@ -76,9 +76,9 @@
 	                            <td>
 	                            	<input type="hidden" name="productCategoryNum" value="${product.productCategoryNum }">
 	                            	<input type="hidden" name="productNum" value="${product.productNum }">
-	                            	<input type="hidden" name="loginMemberId" value="${member.memberId}">
-		                            <input type="text" placeholder="리뷰를 달아주세요^_^" size="60px" name="review">
-		                            <button type="submit" class="btn find-btn1">등록</button>
+	                            	<input type="hidden" name="loginMemberId" value="${loginMember.id}">
+		                            <input id="review" type="text" placeholder="리뷰를 달아주세요^_^" size="60px" name="review" required>
+		                            <button id="reviewbtn" type="submit" class="btn find-btn1">등록</button>
 	                            </td>
 	                            <td></td>
 	                        </tr>
@@ -121,21 +121,17 @@
     </div>
 	
 	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
 	<jsp:include page="/views/common/footer.jsp" />
 	
+	<script type="text/javascript">
+	
+	$('#reviewbtn').click(function() {
+	    if (!$('#review').val()) {
+	        alert('댓글을 입력해주세요.');
+	        return false;
+	    }
+	    
+	    
+	 </script>
 </body>
 </html>

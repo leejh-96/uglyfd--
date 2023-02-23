@@ -44,12 +44,12 @@
                         </tr>
                         <tr>
                             <th>상품명</th>
-                            <td><input type="text" placeholder="상품명을 입력해주세요." size="60px" name="productName"></td>
+                            <td><input id="productName" type="text" placeholder="상품명을 입력해주세요." size="60px" name="productName"></td>
                         </tr>
                     </tbody>
                 </table>
                 <div class="find-btn">
-                    <button type="submit" class="btn find-btn1">조회하기</button>
+                    <button id="productsearch" type="submit" class="btn find-btn1">조회하기</button>
                     <button type="reset" class="btn find-btn1">취소</button>
                 </div>
                 <div class="recycle-div1"></div>
@@ -71,7 +71,7 @@
 		                <tbody>
 		                    <tr>
 		                        <th>${product.productNum}</th>
-		                        <td>${product.productName }</td>
+		                        <td><a href="${path }/product/update?productCategoryNum=${product.productCategoryNum}&productName=${product.productName}&productNum=${product.productNum}">${product.productName }</a></td>
 		                        <td>${product.productPrice }</td>
 		                        <td>5kg ${product.productAmount }box</td>
 		                        <td>${product.discount }%</td>
@@ -105,11 +105,11 @@
 		                     	
 		                     	</td>
 		                     	<td>
-		                            <form action="${path }/product/delete" method="GET">
-					                	<input type="hidden" name="productNum" value="${product.productNum}">
-				                        <input type="hidden" name="productName" value="${product.productName}">
-					                    <button type="submit" class="btn find-btn1" name="update" value="delete">상품삭제</button>
-					                </form>
+<%-- 		                            <form action="${path }/product/delete" method="GET"> --%>
+<%-- 					                	<input type="hidden" name="productNum" value="${product.productNum}"> --%>
+<%-- 				                        <input type="hidden" name="productName" value="${product.productName}"> --%>
+<!-- 					                    <button id="btnDelete" type="submit" class="btn find-btn1" name="update" value="delete">상품삭제</button> -->
+<!-- 					                </form> -->
 		                     	</td>
 		                     	<td></td>
 		                     	<td></td>
@@ -122,5 +122,16 @@
 		        <div id="wrap-div3"></div>
 		    </div>
             <jsp:include page="/views/common/footer.jsp" />
+            
+<script type="text/javascript">
+    
+$('#productsearch').click(function() {
+    if (!$('#productName').val()) {
+        alert('상품명을 입력해주세요.');
+        return false;
+    }
+})
+
+</script>
 </body>
 </html>
