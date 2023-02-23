@@ -56,7 +56,7 @@
                         <li><a href="${path }">과일</a></li>
                     </ul>
                 </li>
-                <li><a href="${path }">공지사항</a></li>
+                <li><a href="${path }/board/list">공지사항</a></li>
                 <li><a href="${path }">1 : 1 문의</a></li>
                 <li>
                     <a href="${path }">고객센터</a>
