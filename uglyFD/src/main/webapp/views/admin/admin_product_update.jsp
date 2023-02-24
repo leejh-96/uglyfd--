@@ -24,14 +24,14 @@
             <div><a href="${path }/productinout" class="admin-sidenav">입/출고조회</a></div>
         </div>
        <div id="wrap-div2">
-       
-       	 <div class="card card-margin">
-            <img id="stock-img" src="${path}/resources/upload/product/${productfile.renamedFileName}"  width="300px" height="130px" >
-         </div>
             <div class="recycle-div1"></div>
             <h1>상품수정</h1>
             <div class="recycle-div1"></div>
-            <form action="${path }/product/update" method="POST" enctype="multipart/form-data">
+       	<div class="text-center">
+			<img src="${path}/resources/upload/product/${productfile.renamedFileName}" width="700px" height="200px" class="rounded" alt="...">
+			<div class="recycle-div1"></div>
+		</div>
+			<form action="${path }/product/update" method="POST" enctype="multipart/form-data" class="update-btn">
                 <table class="table">
 	                <thead>
 	                    <tr>
@@ -53,11 +53,6 @@
 	                        <td>${product.discount }%</td>
 	                        <td>${product.createDate }</td>
 	                        <td>${product.modifyDate }</td>
-<!-- 	                        <td> -->
-<%-- 	                        	<input type="hidden" name="productCategoryNum" value="${product.productCategoryNum}"> --%>
-<%-- 	                            <input type="hidden" name="productName" value="${product.productName}"> --%>
-<%-- 	                            <input type="hidden" name="productNum" value="${product.productNum }"> --%>
-<!-- 	                        </td> -->
 	                     </tr>
 	                 </tbody>
 	              </table>
@@ -77,29 +72,40 @@
                         </tr>
                         <tr>
                             <th scope="row" colspan="5">상품명</th>
-                            <td><input type="text" placeholder="상품명을 입력해주세요." size="60px" name="productName"></td>
+                            <td><input id="productName" type="text" placeholder="상품명을 입력해주세요." size="60px" name="productName"></td>
                         </tr>
                         <tr>
                             <th scope="row" colspan="5">판매가</th>
-                            <td><input type="text" placeholder="판매가를 입력해주세요." size="60px" name="productPrice"></td>
+                            <td><input id="productPrice" type="text" pattern="[0-9]+" placeholder="판매가를 입력해주세요." size="60px" name="productPrice"></td>
                         </tr>
                         <tr>
                             <th scope="row" colspan="5">첨부파일</th>
-                            <td><input type="file" size="60px" name="upfile"></td>
+                            <td><input id="productFile" type="file" size="60px" name="upfile"></td>
                         </tr>
                         <tr>
                             <th scope="row" colspan="5">상세설명</th>
-                            <td><textarea name="productDetail" id="" cols="30" rows="10" style="width: 100%; height: 150px;"></textarea></td>
+                            <td><textarea id="productDetail" name="productDetail" id="" cols="63" rows="5" style="resize:none;"></textarea></td>
                         </tr>
+                        <!--  -->
                     </tbody>
+                        <tr>
+                        	<th>
+					            	<input type="hidden" name="productNum" value="${product.productNum }">
+					            	<button id="productUpdate" type="submit" class="btn find-btn1">수정하기</button>
+					            </form>
+                        	</th>
+                        	<th>
+			                    <form action="${path }/product/delete" method="GET" class="update-btn">
+								        <input type="hidden" name="productNum" value="${product.productNum}">
+							            <input type="hidden" name="productName" value="${product.productName}">
+								        <button id="btnDelete" type="submit" class="btn find-btn1" name="update" value="delete">상품삭제</button>
+								</form>
+                        	</th>
+                        	<th>
+                        		<button onclick="history.go(-1);" type="button" class="btn find-btn1">이전으로</button>
+                        	</th>
+                        </tr>
                 </table>
-                <div class="find-btn">
-                	<input type="hidden" name="productNum" value="${product.productNum }">
-                    <button type="submit" class="btn find-btn1">등록하기</button>
-                    <button type="reset" class="btn find-btn1">취소</button>
-                </div>
-            </form>
-
 		            </div>
 		        <div id="wrap-div3"></div>
 		    </div>
@@ -108,7 +114,26 @@
 	
 	<script>
 	
-	
+	$('#productUpdate').click(function() {
+	    if (!$('#productName').val()) {
+	        alert('상품이름을 입력해주세요.');
+	        return false;
+	    }
+	    if (!$('#productPrice').val()) {
+	        alert('상품가격을 입력해주세요.');
+	        return false;
+	    }
+	    if (!$('#productFile').val()) {
+	        alert('상품이미지 파일을 등록해주세요.');
+	        return false;
+	    }
+	    if (!$('#productDetail').val()) {
+	        alert('상품에 대한 소개를 입력해주세요.');
+	        return false;
+	    }
+	    
+	    
+	})
 	
 	
 	

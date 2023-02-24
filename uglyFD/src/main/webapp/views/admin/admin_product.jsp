@@ -45,32 +45,31 @@
                         </tr>
                         <tr>
                             <th scope="row" colspan="2">상품명</th>
-                            <td><input type="text" placeholder="상품명을 입력해주세요." size="60px" name="productName"></td>
+                            <td><input id="pName" type="text" placeholder="상품명을 입력해주세요." size="60px" name="productName" required></td>
                         </tr>
                         <tr>
                             <th scope="row" colspan="2">판매가</th>
-                            <td><input type="text" placeholder="판매가를 입력해주세요." size="60px" name="productPrice"></td>
+                            <td><input id="pPrice" type="text" placeholder="숫자만 입력해주세요." size="60px" name="productPrice" required></td>
                         </tr>
                         <tr>
                             <th scope="row" colspan="2">할인율</th>
-                            <td><input type="hidden" name="discount" value="20">20%</td>
+                            <td><input id="pDiscount" type="hidden" name="discount" value="20">20%</td>
                         </tr>
                         <tr>
                             <th scope="row" colspan="2">첨부파일</th>
-                            <td><input type="file" size="60px" name="upfile"></td>
+                            <td><input id="pFile" type="file" size="60px" name="upfile" required></td>
                         </tr>
                         <tr>
                             <th scope="row" colspan="2">상세설명</th>
-                            <td><textarea name="productDetail" id="" cols="30" rows="10" style="width: 100%; height: 150px;"></textarea></td>
+                            <td><textarea id="pDetail" name="productDetail"  cols="63" rows="5" style="resize:none;" required></textarea></td>
                         </tr>
                     </tbody>
                 </table>
                 <div class="find-btn">
-                    <button type="submit" class="btn find-btn1">등록하기</button>
+                    <button id="productInsert" type="submit" class="btn find-btn1">등록하기</button>
                     <button type="reset" class="btn find-btn1">취소</button>
                 </div>
             </form>
-
 		            </div>
 		        <div id="wrap-div3"></div>
 		    </div>
@@ -79,7 +78,27 @@
 	
 	<script>
 	
-	
+	$('#productInsert').click(function() {
+	    if (!$('#pName').val()) {
+	        alert('상품이름을 입력해주세요.');
+	        return false;
+	    }
+	    if (!$('#pPrice').val()) {
+	        alert('상품가격을 입력해주세요.');
+	        return false;
+	    }
+	    if (!$('#pFile').val()) {
+	        alert('상품이미지 파일을 등록해주세요.');
+	        return false;
+	    }
+	    if (!$('#pDetail').val()) {
+	        alert('상품에 대한 소개를 입력해주세요.');
+	        return false;
+	    }
+	    if (!$('#fruit').val()) {
+			alert('한가지만 선택해주세요.');
+			return false;
+		}
 	
 	
 	

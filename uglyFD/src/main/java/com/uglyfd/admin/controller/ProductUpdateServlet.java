@@ -82,6 +82,13 @@ public class ProductUpdateServlet extends HttpServlet {
 		product.setProductDetail(mr.getParameter("productDetail"));
 		product.setProductNum(Integer.parseInt( mr.getParameter("productNum")));
 		
+		System.out.println(product.getProductCategoryNum());
+		System.out.println(product.getProductName());
+		System.out.println(product.getProductDetail());
+		System.out.println(product.getProductNum());
+		System.out.println(productFile.getProductFileNum());
+		System.out.println(productFile.getOriginalFileName());
+		System.out.println(productFile.getRenamedFileName());
 		
 		result = new ProductService().productUpdate(product,productFile);
 		

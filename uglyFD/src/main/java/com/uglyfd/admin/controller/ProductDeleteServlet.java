@@ -27,13 +27,14 @@ public class ProductDeleteServlet extends HttpServlet {
 		
 		if (result > 0) {
 			System.out.println("삭제 성공");
-			response.sendRedirect("/views/admin/admin_stock.jsp");
+			request.setAttribute("msg", "상품 삭제에 성공하셨습니다.");
+			request.setAttribute("location", "/views/admin/admin_product_detail.jsp");
 		}else {
 			System.out.println("삭제 실패");
 			request.setAttribute("msg", "상품 삭제에 실패하셨습니다.");
-			request.setAttribute("location", "/views/admin/admin_stock.jsp");
-			request.getRequestDispatcher("/views/common/msg.jsp").forward(request, response);
+			request.setAttribute("location", "/views/admin/admin_product_detail.jsp");
 		}
+		request.getRequestDispatcher("/views/common/msg.jsp").forward(request, response);
 		
 	}
 

@@ -244,13 +244,13 @@ public class ProductService {
 		}
 		return list;
 	}
-	public int productReview(int productNum, int productCategoryNum, String review) {
+	public int productReview(String loginMemberId, int productNum, int productCategoryNum, String review) {
 		//, String loginMemberId매개변수에 넣기
 		int result = 0;
 		
 		Connection connection = getConnection();
 		//,loginMemberId 매개변수에 넣기
-		result = new ProductDao().productReview(connection,productNum,productCategoryNum,review);
+		result = new ProductDao().productReview(loginMemberId,connection,productNum,productCategoryNum,review);
 		
 		if (result > 0) {
 			System.out.println("댓글 등록에 성공했습니다.");
@@ -313,6 +313,64 @@ public class ProductService {
 			close(connection);
 		}
 		return list;
+	}
+
+	public Admin_member findByAdmin_Member(String name, String id, String phone) {
+
+		Admin_member amember = new Admin_member();
+		
+		Connection connection = getConnection();
+		
+		amember = new ProductDao().findByAdmin_Member(connection,name,id,phone);
+		
+		if (amember != null && amember.getName()!=null) {
+			System.out.println("회원이 정상적으로 검색되었습니다.");
+			close(connection);
+		}else if (amember.getName() == null) {
+			System.out.println("회원 검색에 실패했습니다.");
+			close(connection);
+		}
+		
+		return amember;
+	}
+	public int adminMemberUpdate(int memberNo, String id, String password, String addr, String mail, String phone) {
+		
+		int result = 0;
+		
+		Connection connection = getConnection();
+		
+		result = new ProductDao().adminMemberUpdate(connection,memberNo,id,password,addr,mail,phone);
+		
+		if (result > 0) {
+			
+			System.out.println("회원정보가 정상적으로 수정되었습니다.");
+			commit(connection);
+			close(connection);
+		}else {
+			System.out.println("회원정보 수정에 실패했습니다.");
+			rollback(connection);
+			close(connection);
+		}
+		return result;
+	}
+	public int memberDelete(int memberNo) {
+		
+		int result = 0;
+		
+		Connection connection = getConnection();
+		
+		result = new ProductDao().memberDelete(connection,memberNo);
+		
+		if (result > 0) {
+			System.out.println("회원이 정상적으로 삭제되었습니다.");
+			commit(connection);
+			close(connection);
+		}else {
+			System.out.println("회원 삭제에 실패했습니다.");
+			rollback(connection);
+			close(connection);
+		}
+		return result;
 	}
 	
 

@@ -79,5 +79,6 @@
         <div id="wrap-div3"></div>
     </div>
     <jsp:include page="/views/common/footer.jsp" />
+    
 </body>
 </html>
