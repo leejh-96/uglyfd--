@@ -42,7 +42,7 @@
                         </tr>
                         <tr>
                             <th scope="row" colspan="2">아이디</th>
-                            <td><input id="memberId" type="text" placeholder="아이디를 입력해주세요." size="60px" name="id" required></td>
+                            <td><input id="memberId" type="text" placeholder="아이디를 입력해주세요." size="60px" name="id" required ></td>
                         </tr>
                         <tr>
                             <th scope="row" colspan="2">전화번호</th>

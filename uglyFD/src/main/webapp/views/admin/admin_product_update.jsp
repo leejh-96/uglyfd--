@@ -24,13 +24,13 @@
             <div><a href="${path }/productinout" class="admin-sidenav">입/출고조회</a></div>
         </div>
        <div id="wrap-div2">
-       	<div class="text-center">
-			<img src="${path}/resources/upload/product/${productfile.renamedFileName}" width="700px" height="200px" class="rounded" alt="...">
-			<div class="recycle-div2"></div>
-		</div>
             <div class="recycle-div1"></div>
             <h1>상품수정</h1>
             <div class="recycle-div1"></div>
+       	<div class="text-center">
+			<img src="${path}/resources/upload/product/${productfile.renamedFileName}" width="700px" height="200px" class="rounded" alt="...">
+			<div class="recycle-div1"></div>
+		</div>
 			<form action="${path }/product/update" method="POST" enctype="multipart/form-data" class="update-btn">
                 <table class="table">
 	                <thead>
@@ -100,6 +100,9 @@
 							            <input type="hidden" name="productName" value="${product.productName}">
 								        <button id="btnDelete" type="submit" class="btn find-btn1" name="update" value="delete">상품삭제</button>
 								</form>
+                        	</th>
+                        	<th>
+                        		<button onclick="history.go(-1);" type="button" class="btn find-btn1">이전으로</button>
                         	</th>
                         </tr>
                 </table>

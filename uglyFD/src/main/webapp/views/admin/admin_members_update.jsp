@@ -63,7 +63,7 @@
                 <div class="find-btn">
                 	<input type="hidden" name="memberNo" value="${amember.no }">
                     <button type="submit" class="btn find-btn1">수정하기</button>
-                    <button type="reset" class="btn find-btn1">취소</button>
+                    <button onclick="history.go(-1);" type="reset" class="btn find-btn1">이전으로</button>
                 </div>
             </form>
 
@@ -74,7 +74,7 @@
             <jsp:include page="/views/common/footer.jsp" />
 	
 	<script>
-	
+// 	<a href="javascript:history.go(-1)">
 	
 	
 	

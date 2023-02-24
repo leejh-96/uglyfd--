@@ -24,11 +24,11 @@
             <div><a href="${path }/productinout" class="admin-sidenav">입/출고조회</a></div>
         </div>
        <div id="wrap-div2">
+		<h1>재고등록</h1>
        	<div class="text-center">
 			  <img src="${path}/resources/upload/product/${productfile.renamedFileName}" width="700px" height="200px" class="rounded" alt="...">
 			  <div class="recycle-div2"></div>
 		</div>
-		<h1>재고등록</h1>
 			<form action="${path }/productstockupdate" method="POST" >
                 <table class="table">
                     <tbody>
@@ -93,6 +93,7 @@
                 	<input type="hidden" id="productNum" name="productNum" value="${product.productNum}">
                     <button id="productStock" type="submit" class="btn find-btn1">등록하기</button>
                     <button type="reset" class="btn find-btn1">취소</button>
+                    <button onclick="history.go(-1);" type="button" class="btn find-btn1">이전으로</button>
                 </div>
             </form>
 				</div>
